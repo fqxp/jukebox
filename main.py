@@ -1,8 +1,8 @@
 #! /usr/bin/python
 
-from jukebox.ui.gtk import UI
+#from jukebox.ui.gtk import UI
+from jukebox.ui.hardware import UI
 from jukebox.jukebox import Jukebox
-from gi.repository import Gtk
 
 
 playlists = [
