@@ -1,0 +1,6 @@
+nose
+ipython
+mock
+nose-progressive
+coverage
+statistics
