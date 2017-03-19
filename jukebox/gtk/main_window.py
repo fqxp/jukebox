@@ -1,18 +1,7 @@
 from gi.repository import Gtk
 
 
-class UI(object):
-
-    def __init__(self, jukebox):
-        self.window = JukeboxWindow(jukebox)
-        self.window.connect('delete-event', Gtk.main_quit)
-        self.window.show_all()
-
-    def run(self):
-        Gtk.main()
-
-
-class JukeboxWindow(Gtk.Window):
+class MainWindow(Gtk.Window):
 
     ENABLED_TEXT = '<span foreground="green">Enabled</span>'
     DISABLED_TEXT = '<span foreground="red">Disabled</span>'
@@ -90,4 +79,3 @@ class JukeboxWindow(Gtk.Window):
         grid_layout.attach(self.play_pause_button, 0, 2, 2, 1)
         grid_layout.attach(self.prev_button, 2, 2, 1, 1)
         grid_layout.attach(self.next_button, 3, 2, 1, 1)
-

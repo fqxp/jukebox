@@ -1,7 +1,7 @@
 from mpd import MPDClient
 
 
-class Jukebox(object):
+class Jukebox:
 
     def __init__(self, playlists, mpd_host, mpd_port=6600):
         self.playlists = playlists
@@ -90,4 +90,3 @@ class Jukebox(object):
     def current_playing_pos(self):
         status = self.client.status()
         return int(status.get('song', 0))
-
