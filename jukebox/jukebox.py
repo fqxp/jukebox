@@ -1,11 +1,11 @@
-from mpd import MPDClient
+from .safe_mpd_client import SafeMPDClient
 
 
 class Jukebox:
 
     def __init__(self, playlists, mpd_host, mpd_port=6600):
         self.playlists = playlists
-        self.client = MPDClient()
+        self.client = SafeMPDClient()
         self.client.connect(mpd_host, mpd_port)
 
     def count_playlists(self):
