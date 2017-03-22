@@ -1,4 +1,5 @@
 import Adafruit_GPIO as GPIO
+from . import event_loop
 
 
 class ButtonArray:
@@ -14,10 +15,6 @@ class ButtonArray:
         self._on_button_released = on_button_released
 
     def poll(self):
-        # for pin in self.button_pins:
-            # self._mcp.setup(pin, GPIO.IN)
-            # self._mcp.pullup(pin, True)
-
         old_button_states = self._button_states
         self._button_states = self._poll_button_states()
 
@@ -35,3 +32,4 @@ class ButtonArray:
         for pin in self.button_pins:
             self._mcp.setup(pin, GPIO.IN)
             self._mcp.pullup(pin, True)
+        event_loop.register_poll_func(self.poll)
