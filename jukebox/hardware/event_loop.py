@@ -1,3 +1,4 @@
+import traceback
 import threading
 import time
 
@@ -31,5 +32,12 @@ def _loop():
 
     while _running:
         for poll_func in _poll_functions:
-            poll_func()
+            _call_poll_func(poll_func)
         time.sleep(_interval)
+
+
+def _call_poll_func(poll_func):
+    try:
+        poll_func()
+    except Exception as e:
+        traceback.print_exc()
