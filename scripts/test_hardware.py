@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
 from Adafruit_GPIO.MCP230xx import MCP23017
+from jukebox.hardware import config
 import Adafruit_GPIO as GPIO
 import time
 
 output_pins = (0, 1, 2, 3, 4, 5, 6, 7)
 input_pins = (8, 9, 10, 11, 12, 13, 14, 15)
 
+gpio = GPIO.get_platform_gpio()
 mcp = MCP23017(address=0x20)
 
 # Set pin 3 to input with the pullup resistor enabled
@@ -31,7 +33,7 @@ def wait_for_button_press(input_pin, timeout=5):
     print('timeout detecting button press on button %d' % input_pin)
 
 
-def test_outputs():
+def test_playlist_button_leds():
     for output_pin in output_pins:
         print('flashing led %d' % output_pin)
         mcp.setup(output_pin, GPIO.OUT)
@@ -40,7 +42,17 @@ def test_outputs():
         mcp.output(output_pin, 0)
 
 
-def test_inputs():
+def test_power_led():
+    gpio.setup(config.LED_PIN, GPIO.OUT)
+    print('Flashing LED for 1.5 seconds ...')
+    for i in range(60):
+        state = GPIO.LOW if i % 2 == 0 else GPIO.HIGH
+        gpio.output(config.LED_PIN, state)
+        time.sleep(.025)
+    print('done')
+
+
+def test_playlist_buttons():
     # for input_pin in input_pins:
     for input_pin in input_pins:
         mcp.setup(input_pin, GPIO.IN)
@@ -49,5 +61,6 @@ def test_inputs():
 
 
 if __name__ == '__main__':
-    test_outputs()
-    test_inputs()
+    test_power_led()
+    test_playlist_button_leds()
+    test_playlist_buttons()

@@ -1,0 +1,11 @@
+# vi: set ft=python:
+
+PLAYLIST_BUTTON_PINS = (8, 9, 10, 11, 12, 13, 14, 15)
+PLAYLIST_BUTTON_LED_PINS = (0, 1, 2, 3, 4, 5, 6, 7)
+
+PLAY_BUTTON_PIN = 27
+BACKWARD_BUTTON_PIN = 18
+FORWARD_BUTTON_PIN = 23
+# question_button_pin = 99
+
+LED_PIN = 5
